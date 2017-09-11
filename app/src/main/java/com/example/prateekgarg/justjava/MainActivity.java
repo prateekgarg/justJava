@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
         boolean whippedCreamState = ((CheckBox) findViewById(R.id.whipped_cream_checkbox)).isChecked();
         boolean chocolateState = ((CheckBox) findViewById(R.id.chocolate_checkbox)).isChecked();
         EditText name = findViewById(R.id.name);
         String nameEntered = name.getText().toString();
         //Log.v("Whipped Cream checkbox",  "" + whippedCreamState);
         //Log.v("Chocolate checkbox",  "" + chocolateState);
+        int price = calculatePrice(whippedCreamState, chocolateState);
         displayMessage(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered));
     }
 
@@ -37,8 +37,15 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the price
      */
-    private int calculatePrice() {
-        return quantity * 5;
+    private int calculatePrice(boolean whippedCream, boolean chocolate) {
+        int price = 5;
+        if (whippedCream) {
+            price += 1;
+        }
+        if (chocolate) {
+            price += 2;
+        }
+        return quantity * price;
     }
     /**
      * This method displays the given text on the screen.
@@ -59,7 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void increment(View view) {
         //int quantity = 3;
-        displayQantity(++quantity);
+        if (quantity >= 100) {
+            quantity = 100;
+            displayQantity(100);
+        } else {
+            displayQantity(++quantity);
+        }
     }
 
     public void decrement(View view) {
