@@ -22,34 +22,33 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = 5;
-        String priceMessage = "Total: $" + (quantity * price);
-        priceMessage = priceMessage + "\nThank You!!";
-        displayMessage(priceMessage);
+        int price = calculatePrice();
+
+        displayMessage(createOrderSummary(price));
     }
 
+    /**
+     * Calculates the price of the order based on the current quantity.
+     *
+     * @return the price
+     */
+    private int calculatePrice() {
+        return quantity * 5;
+    }
     /**
      * This method displays the given text on the screen.
      */
     private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
     private void displayQantity(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method displays the given price on the screen.
-     */
-    private void displayPrice(int number) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
     public void increment(View view) {
@@ -64,5 +63,13 @@ public class MainActivity extends AppCompatActivity {
             quantity = 0;
         } else
             displayQantity(--quantity);
+    }
+
+    /*
+    * Create a longer summary of the order. Hardcode the name for now
+    * */
+    public String createOrderSummary(int price) {
+        String result = "Name: Awesome Possum\nQuantity: " + quantity + "\nTotoal: $" + price + "\nThank You!";
+        return result;
     }
 }
