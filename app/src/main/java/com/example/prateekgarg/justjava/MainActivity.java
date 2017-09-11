@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice();
         boolean whippedCreamState = ((CheckBox) findViewById(R.id.whipped_cream_checkbox)).isChecked();
         boolean chocolateState = ((CheckBox) findViewById(R.id.chocolate_checkbox)).isChecked();
+        EditText name = findViewById(R.id.name);
+        String nameEntered = name.getText().toString();
         //Log.v("Whipped Cream checkbox",  "" + whippedCreamState);
         //Log.v("Chocolate checkbox",  "" + chocolateState);
-        displayMessage(createOrderSummary(price, whippedCreamState, chocolateState));
+        displayMessage(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered));
     }
 
     /**
@@ -71,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
     /*
     * Create a longer summary of the order. Hardcode the name for now
     * */
-    public String createOrderSummary(int price, boolean whippedCreamState, boolean chocolateState) {
-        String result = "Name: Awesome Possum" + "\nAdd whipped cream? " + whippedCreamState + "\nAdd Chocolate? " + chocolateState + "\nQuantity: " + quantity + "\nTotoal: $" + price + "\nThank You!";
+    public String createOrderSummary(int price, boolean whippedCreamState, boolean chocolateState, String name) {
+        String result = "Name: " + name + "\nAdd whipped cream? " + whippedCreamState + "\nAdd Chocolate? " + chocolateState + "\nQuantity: " + quantity + "\nTotoal: $" + price + "\nThank You!";
         return result;
     }
 }
