@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         sendIntent(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered), nameEntered);
     }
 
+    //This method is called from the onClick method of Order Button
+    //Allows the app to pack data like name and order to send it over to an email app
     public void sendIntent(String message, String name) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
@@ -67,13 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
     /**
      * This method displays the given text on the screen.
-     */
-   /* private void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        //orderSummaryTextView.
-        orderSummaryTextView.setText(message);
-    }*/
 
+     private void displayMessage(String message) {
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
+        orderSummaryTextView.setText(message);
+     }
+     */
     /**
      * This method displays the given quantity value on the screen.
      */
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
+    //Increment quantity, maxed out to 100
     public void increment(View view) {
         //int quantity = 3;
         if (quantity >= 100) {
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Decrement quantity, minimum set to 0 as we cannot have negative cups of coffee in an order
     public void decrement(View view) {
         //int quantity = 1;
         if (quantity <= 0) {
@@ -102,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    * Create a longer summary of the order. Hardcode the name for now
+    * Create a longer summary of the order. Did not do it as done in the course
     * */
     public String createOrderSummary(int price, boolean whippedCreamState, boolean chocolateState, String name) {
         String result = "Name: " + name + "\nAdd whipped cream? " + whippedCreamState +
