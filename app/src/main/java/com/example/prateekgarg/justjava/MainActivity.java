@@ -2,8 +2,11 @@
 
 package com.example.prateekgarg.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -29,7 +32,22 @@ public class MainActivity extends AppCompatActivity {
         //Log.v("Whipped Cream checkbox",  "" + whippedCreamState);
         //Log.v("Chocolate checkbox",  "" + chocolateState);
         int price = calculatePrice(whippedCreamState, chocolateState);
-        displayMessage(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered));
+        //displayMessage(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered));
+        sendIntent(createOrderSummary(price, whippedCreamState, chocolateState, nameEntered), nameEntered);
+    }
+
+    public void sendIntent(String message, String name) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+
+        intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava Coffee Order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"garg.prateek1@outlook.com"});
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            Log.e("Email Intent Problem", "Failed to get any package capable of handling email sending");
+        }
     }
 
     /**
@@ -50,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the given text on the screen.
      */
-    private void displayMessage(String message) {
+   /* private void displayMessage(String message) {
         TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         //orderSummaryTextView.
         orderSummaryTextView.setText(message);
-    }
+    }*/
 
     /**
      * This method displays the given quantity value on the screen.
