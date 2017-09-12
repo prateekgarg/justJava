@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         intent.putExtra(Intent.EXTRA_SUBJECT, "JustJava Coffee Order for " + name);
         intent.putExtra(Intent.EXTRA_TEXT, message);
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"garg.prateek1@outlook.com"});
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sampleEmail@outlook.com"});
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         } else {
