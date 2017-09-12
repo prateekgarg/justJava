@@ -105,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
     * Create a longer summary of the order. Hardcode the name for now
     * */
     public String createOrderSummary(int price, boolean whippedCreamState, boolean chocolateState, String name) {
-        String result = "Name: " + name + "\nAdd whipped cream? " + whippedCreamState + "\nAdd Chocolate? " + chocolateState + "\nQuantity: " + quantity + "\nTotoal: $" + price + "\nThank You!";
+        String result = "Name: " + name + "\nAdd whipped cream? " + whippedCreamState +
+                "\nAdd Chocolate? " + chocolateState + "\nQuantity: " + quantity + "\nTotoal: $" + price + "\n" + getString(R.string.thanks);
         return result;
     }
 }

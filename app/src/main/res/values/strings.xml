@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">justJava</string>
+    <string name="app_name">Just Java Coffee</string>
+    <string name="toppings">Toppings</string>
+    <string name="thanks">Thank You!</string>
+    <string name="quantity">Quantity</string>
 </resources>
